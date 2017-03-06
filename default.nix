@@ -1,6 +1,6 @@
 { pkgs ? import ./nixpkgs.nix
 , venvdir ? ".venv"
-, name ? "cloudmesh_api"
+, name ? "cloudmesh_core"
 }:
 
 with pkgs;
