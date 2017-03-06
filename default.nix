@@ -17,6 +17,10 @@ let
     stringLength
     ;
 
+  myPythonPackages = pythonPackages // (with pythonPackages; {
+    dotdict = callPackage ./requirements/dotdict.nix {inherit buildPythonPackage fetchPypi;};
+  });
+
   readRequirements = file:
     let
       cleaner = line: !(hasPrefix "#" line) && (stringLength line > 0);
@@ -31,7 +35,7 @@ let
         else throw "Cannot find '${name}'";
     in map findPkg packageNames;
 
-  findPythonPackages = path: findPackages pythonPackages (readRequirements path);
+  findPythonPackages = path: findPackages myPythonPackages (readRequirements path);
 
   requirements      = findPythonPackages ./requirements.open;
   test_requirements = findPythonPackages ./test_requirements.open;
