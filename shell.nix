@@ -17,8 +17,11 @@ let
     stringLength
     ;
 
+  callPythonPackage = path: attrs: with pythonPackages;
+    callPackage path ({ inherit buildPythonPackage fetchPypi; } // attrs) ;
+
   myPythonPackages = pythonPackages // (with pythonPackages; {
-    dotdict = callPackage ./requirements/dotdict.nix {inherit buildPythonPackage fetchPypi;};
+    dotdict = callPythonPackage ./requirements/dotdict.nix {};
   });
 
   readRequirements = file:
