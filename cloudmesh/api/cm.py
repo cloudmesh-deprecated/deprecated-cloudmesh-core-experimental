@@ -2,19 +2,17 @@
 This module defines the main API for operating with cloudmesh.
 """
 
-from traits import HasTraits, Interface
+from abc import ABCMeta, abstractmethod, abstractproperty
 
-from cloudmesh_client.common.ConfigDict import ConfigDict
+from traits.api import HasTraits, Interface
 
-from cloudmesh_client import CloudmeshDatabase
-
+from cloudmesh.core.config import Config
 
 
 class Resource(object):
 
 
     __metaclass__ = ABCMeta
-    db = CloudmeshDatabase()
 
     @abstractmethod
     def create(self):
@@ -40,9 +38,6 @@ class Provider(object):
     """
 
     __metaclass__ = ABCMeta
-    db = CloudmeshDatabase()
-    cfg = ConfigDict("~/.cloudmesh/cloudmesh.yaml")
-
     _resources = list()
 
     def _add_resource(self, resource):
@@ -54,7 +49,7 @@ class Provider(object):
 
     ###################################################################
 
-p    def __init__(self, cloud):
+    def __init__(self, cloud):
         self._cloud = cloud
 
     @property
@@ -111,7 +106,6 @@ class Node(object):
     """
 
     __metaclass__ = ABCMeta
-    db = CloudmeshDatabase()
 
     @abstractproperty
     def name(self):
@@ -165,15 +159,12 @@ class Cluster(object):
     """
 
     __metaclass__ = ABCMeta
-    db = CloudmeshDatabase()
 
 
 class Stack(object):
 
     __metaclass__ = ABCMeta
-    db = CloudmeshDatabase()
 
 class Layer(object):
 
     __metaclass__ = ABCMeta
-    db = CloudmeshDatabase()
