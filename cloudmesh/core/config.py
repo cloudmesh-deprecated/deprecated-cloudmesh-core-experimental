@@ -1,10 +1,8 @@
 
-import dotdict
 import yaml
 from traits.api import File, HasTraits, Instance
 
-# for testing
-
+from cloudmesh.core.util import Dotdict
 
 
 class Config(HasTraits):
@@ -13,26 +11,28 @@ class Config(HasTraits):
     """
 
     filename = File(exists=True)
-    _config = Instance(dotdict.dotdict)
+    _config = Instance(Dotdict)
 
     def __init__(self, filename=None):
         super(Config, self).__init__(filename=filename)
 
         with open(self.filename) as fd:
             d = yaml.load(fd)
-            self._config = dotdict.dotdict(d)
+            self._config = Dotdict(d)
 
     def get_cloud(self, cloudname):
-        "Retrieve the configuration properties for the givin cloud"
+        "Retrieve the configuration properties for the given cloud"
+        return self._config.cloudmesh.clouds[cloudname]
 
 
 
 
 
+################################################################
+# Tests
+################################################################
 
 def test_config(tmpdir):
-    import os.path
-
     s = """
 meta:
   version: 4.1
@@ -80,5 +80,5 @@ cloudmesh:
     assert isinstance(c, Config)
 
     d = c.get_cloud('kilo')
-    assert isinstance(d, dotdict.dotdict)
+    assert isinstance(d, dict)
 
