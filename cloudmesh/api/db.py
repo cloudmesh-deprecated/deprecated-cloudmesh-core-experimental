@@ -2,7 +2,7 @@
 This module defines the database access layer to Cloudmesh
 """
 
-from traits.api import Any, HasTraits, Interface, Long, Property
+from traits.api import Any, Bool, HasTraits, Interface, Long, Property
 
 
 class Entity(HasTraits):
@@ -37,7 +37,7 @@ class Result(HasTraits):
     Result of the operations on the Database
     """
 
-    success = Property()
+    success = Bool()
 
     def force(self):
         "Fully evaluate the result"
