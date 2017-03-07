@@ -79,6 +79,10 @@ cloudmesh:
     c = Config(yaml.strpath)
     assert isinstance(c, Config)
 
-    d = c.get_cloud('kilo')
-    assert isinstance(d, dict)
+    kilo = c.get_cloud('kilo')
+    assert isinstance(kilo, dict)
 
+    assert kilo.cm_host == 'india'
+    assert kilo.credentials.OS_AUTH_URL == 'TBD'
+    assert kilo.default.flavor == 'm1.small'
+    assert kilo.default.image == 'Ubuntu-14.04-64'
