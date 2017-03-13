@@ -2,7 +2,9 @@
 This module defines the database access layer to Cloudmesh
 """
 
-from traits.api import Any, Bool, HasTraits, Interface, Long, Property
+import types
+
+from traits.api import Any, Bool, HasTraits, Interface
 
 
 class Entity(HasTraits):
@@ -10,8 +12,8 @@ class Entity(HasTraits):
     Represents an object that has a presence in the database.
     """
 
-    key = Long()
-    value = Any()
+    key = Any
+    value = Any
 
 
 class Query(object):
@@ -37,13 +39,16 @@ class Result(HasTraits):
     Result of the operations on the Database
     """
 
-    success = Bool()
+    success = Bool
+    _items = List(Entity)
 
-    def force(self):
-        "Fully evaluate the result"
 
     def one(self):
         "Retrive the first :class:`Entity`"
+        return self._items[0]
+
+    def __iter__(self):
+        return iter(self._items)
 
 
 class ICloudmeshDatabase(Interface):

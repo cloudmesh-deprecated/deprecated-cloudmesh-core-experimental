@@ -1,6 +1,6 @@
+from __future__ import absolute_import
 
 from dotdict import dotdict as _dotdict
-import copy
 
 
 class Dotdict(_dotdict):
@@ -19,3 +19,4 @@ class Dotdict(_dotdict):
             if isinstance(v, dict):
                 v = Dotdict(v)
             self[k] = v
+

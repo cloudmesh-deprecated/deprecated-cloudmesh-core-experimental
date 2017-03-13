@@ -1,6 +1,7 @@
 from setuptools import find_packages, setup
 import re
 
+
 def readfile(path):
     with open(path) as fd:
         return fd.read()
@@ -32,7 +33,7 @@ def setuptools_requires(path):
 
 
 setup(
-    name = 'Cloudmesh API',
+    name = 'cloudmesh.core',
     author = "Gregor von Laszewski, Badi' Abdul-Wahid",
     version = readfile('VERSION').strip(),
     licence = 'Apache 2.0',
