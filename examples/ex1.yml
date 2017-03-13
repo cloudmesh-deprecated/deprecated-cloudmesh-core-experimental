@@ -1,0 +1,72 @@
+nodes:
+  default:
+    cpus: 1
+    memory: 2048
+    disk: 80
+    loginuser: ubuntu
+    os:
+      flavor: ubuntu
+      version: 14.04
+      arch: amd64
+    keys:
+      - mine
+      - jane
+      - john
+    secgroup:
+      - default
+
+cluster:
+  - default:
+      count: 2
+      cloud: kilo
+      external_ip: yes
+  - default:
+      count: 2
+      cloud: chameleon
+      external_ip: yes
+
+stack:
+  - hadoop:
+      deployer: ansible
+      fromGitHub:
+        owner: futuresystems
+        repo: big-data-stack
+        commit: master
+      # fixme
+
+keys:
+  mine: ~/.ssh/id_rsa.pub
+  jane: ./keys/jane.pub
+  john: ./keys/john.pub
+
+
+security_groups:
+  rules:
+    internal:
+      ports: all
+      ingress: yes
+      egress: yes
+    external:
+      ports: all
+      ingress: no
+      egress: yes
+
+  internal:
+    protocols:
+      - tcp
+      - udp
+    rules:
+      - internal: {}
+
+  external:
+    protocols:
+      - tcp
+      - udp
+    rules:
+      - external:
+          ingress: yes
+          ports: [ 22, 443, 80, 8080 ]
+
+  default:
+    external: security_groups.external
+    internal: security_groups.internal
