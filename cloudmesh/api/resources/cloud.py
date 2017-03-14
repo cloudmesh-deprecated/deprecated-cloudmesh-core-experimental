@@ -58,7 +58,7 @@ class Node(CloudResource):
 
     @abstractproperty
     def users(self):
-        "All users availble as :class:`list` of :class:`User`"
+        "All users available as :class:`list` of :class:`User`"
 
     @abstractmethod
     def ssh(self, user=None, cmd=None):
