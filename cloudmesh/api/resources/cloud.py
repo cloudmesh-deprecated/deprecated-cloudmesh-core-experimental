@@ -1,6 +1,6 @@
 from abc import ABCMeta, abstractmethod, abstractproperty
 
-from cloudmesh.api.resource import Resource as ResourceInterface
+from cloudmesh.api.resources import Resource as ResourceInterface
 
 
 class CloudResource(ResourceInterface):
