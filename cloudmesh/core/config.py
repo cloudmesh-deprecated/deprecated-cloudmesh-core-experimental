@@ -2,7 +2,7 @@
 import yaml
 from traits.api import File, HasTraits, Instance
 
-from cloudmesh.core.util.dotdict import Dotdict
+from cloudmesh.util import Dotdict
 
 
 class Config(HasTraits):
