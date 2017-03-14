@@ -22,6 +22,8 @@ let
 
   myPythonPackages = pythonPackages // (with pythonPackages; {
     dotdict = callPythonPackage ./requirements/dotdict.nix {};
+    python-novaclient = novaclient;
+    python-keystoneclient = keystoneclient;
   });
 
   readRequirements = file:
