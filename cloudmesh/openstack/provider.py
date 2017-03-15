@@ -69,8 +69,9 @@ class Provider(ProviderInterface):
     def secgroups(self):
         return self._nova_list_2_results('security_groups')
 
+    def flavors(self):
+        return self._nova_list_2_results('flavors')
 
-    def flavors(self): raise NotImplementedError()
     def images(self): raise NotImplementedError()
     def addresses(self): raise NotImplementedError()
 
