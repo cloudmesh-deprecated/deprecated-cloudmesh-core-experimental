@@ -72,7 +72,9 @@ class Provider(ProviderInterface):
     def flavors(self):
         return self._nova_list_2_results('flavors')
 
-    def images(self): raise NotImplementedError()
+    def images(self):
+        return self._nova_list_2_results('images')
+
     def addresses(self): raise NotImplementedError()
 
     def deallocate_image(self, *args, **kwargs): raise NotImplementedError()
