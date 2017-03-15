@@ -103,7 +103,9 @@ class Provider(ProviderInterface):
         return Result(str(server.id), Dotdict(server.to_dict()))
 
 
-    def deallocate_node(self, *args, **kwargs): raise NotImplementedError()
+    def deallocate_node(self, ident):
+        logger.info('Deallocating OpenStack node %s', ident)
+        self.nova.servers.find(id=ident).delete()
 
     ################################ images
 
