@@ -106,6 +106,8 @@ class Provider(object):
     def name(self):
         "The name of this provider"
 
+    ################################ listing
+
     @abstractmethod
     def nodes(self):
         """List the nodes running
