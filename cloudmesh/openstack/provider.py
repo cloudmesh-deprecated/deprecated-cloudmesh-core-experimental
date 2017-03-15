@@ -75,7 +75,8 @@ class Provider(ProviderInterface):
     def images(self):
         return self._nova_list_2_results('images')
 
-    def addresses(self): raise NotImplementedError()
+    def addresses(self):
+        return self._nova_list_2_results('floating_ips')
 
     def deallocate_image(self, *args, **kwargs): raise NotImplementedError()
     def allocate_image(self, *args, **kwargs): raise NotImplementedError()
