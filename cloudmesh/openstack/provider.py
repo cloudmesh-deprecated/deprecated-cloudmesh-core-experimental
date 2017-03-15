@@ -54,7 +54,7 @@ class Provider(ProviderInterface):
         self.keystone = auth.keystone
         self.nova = auth.nova
 
-    def _nova_list_2_results(self, attr):
+    def _nova_list_to_results(self, attr):
         values = getattr(self.nova, attr).list()
         return [Result(str(value.id), Dotdict(value.to_dict()))
                 for value in values]
@@ -64,19 +64,19 @@ class Provider(ProviderInterface):
         return 'openstack'      # FIXME needs self inspection for more descriptive name
 
     def nodes(self):
-        return self._nova_list_2_results('servers')
+        return self._nova_list_to_results('servers')
 
     def secgroups(self):
-        return self._nova_list_2_results('security_groups')
+        return self._nova_list_to_results('security_groups')
 
     def flavors(self):
-        return self._nova_list_2_results('flavors')
+        return self._nova_list_to_results('flavors')
 
     def images(self):
-        return self._nova_list_2_results('images')
+        return self._nova_list_to_results('images')
 
     def addresses(self):
-        return self._nova_list_2_results('floating_ips')
+        return self._nova_list_to_results('floating_ips')
 
     def deallocate_image(self, *args, **kwargs): raise NotImplementedError()
     def allocate_image(self, *args, **kwargs): raise NotImplementedError()
