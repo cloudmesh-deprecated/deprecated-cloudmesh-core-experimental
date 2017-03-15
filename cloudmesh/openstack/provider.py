@@ -173,3 +173,12 @@ if __name__ == '__main__':
     for r in p.addresses():
         print r, r.pool, r.ip, '->', r.fixed_ip, '(', r.instance_id, ')'
     print
+
+    print 'Boot'
+    image = filter(lambda r: r.name == 'CC-Ubuntu14.04', p.images())[0]
+    flavor = filter(lambda r: r.name == 'm1.small', p.flavors())[0]
+    networks = filter(lambda r: r.label.startswith(e('OS_TENANT_NAME')), p.networks())
+    networks = [{'net-id': r.id} for r in networks]
+    r = p.allocate_node(name='badi-cm2test', image=image.id, flavor=flavor, networks=networks)
+    print r, p.nova.servers.find(id=r.id).status
+
