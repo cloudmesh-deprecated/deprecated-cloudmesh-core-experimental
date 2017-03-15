@@ -78,6 +78,9 @@ class Provider(ProviderInterface):
     def addresses(self):
         return self._nova_list_to_results('floating_ips')
 
+    def networks(self):
+        return self._nova_list_to_results('networks')
+
     ################################ nodes
 
     def allocate_node(self, name=None, image=None, flavor=None, networks=None, **kwargs):
