@@ -108,5 +108,14 @@ if __name__ == '__main__':
     )
 
     print p.name
+
+    print 'Nodes'
     for r in p.nodes():
         print r, r.name
+    print
+
+    print 'Security groups'
+    for r in p.secgroups():
+        print r
+        for rule in r.rules:
+            print '\t', rule.ip_protocol, rule.from_port, rule.to_port, rule.ip_range.cidr
