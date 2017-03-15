@@ -80,7 +80,26 @@ class Provider(ProviderInterface):
 
     ################################ nodes
 
-    def allocate_node(self, *args, **kwargs): raise NotImplementedError()
+    def allocate_node(self, name=None, image=None, flavor=None, networks=None, **kwargs):
+
+        # Sanity check
+        logger.debug('OpenStack allocate_node sanity check')
+        vars = locals()
+        required = ['name', 'image', 'flavor', 'networks']
+        for _param_name in required:
+            val = vars[_param_name]
+            if not val:
+                msg = 'Required argument %s not specified' % _param_name
+                logger.critical(msg)
+                raise ValueError(msg)
+
+        logger.info('Allocating OpenStack node with name=%s, image=%s, flavor=%s, networks=%s, %s',
+                    name, image, flavor, networks, str(kwargs))
+
+        server = self.nova.servers.create(name=name, image=image, flavor=flavor, nics=networks, **kwargs)
+        return Result(str(server.id), Dotdict(server.to_dict()))
+
+
     def deallocate_node(self, *args, **kwargs): raise NotImplementedError()
 
     ################################ images
