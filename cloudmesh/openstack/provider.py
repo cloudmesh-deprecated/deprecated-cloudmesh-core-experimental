@@ -125,3 +125,8 @@ if __name__ == '__main__':
     print 'Flavors'
     for r in p.flavors():
         print r, r.name, r.vcpus, r.ram, r.disk
+    print
+
+    print 'Images'
+    for r in p.images():
+        print r, r.name
