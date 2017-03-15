@@ -10,7 +10,7 @@ class Provider(object):
     def name(self):
         "The name of this provider"
 
-    @abstractproperty
+    @abstractmethod
     def nodes(self):
         """List the nodes running
 
@@ -18,7 +18,7 @@ class Provider(object):
         :rtype: :class:`list` of :class:`dict`
         """
 
-    @abstractproperty
+    @abstractmethod
     def images(self):
         """List the images available
 
@@ -26,7 +26,7 @@ class Provider(object):
         :rtype: :class:`list` of :class:`dict`
         """
 
-    @abstractproperty
+    @abstractmethod
     def flavors(self):
         """List the flavors available
 
@@ -34,7 +34,7 @@ class Provider(object):
         :rtype: :class:`list` of :class:`dict`
         """
 
-    @abstractproperty
+    @abstractmethod
     def secgroups(self):
         """List the security groups available
 
@@ -42,7 +42,7 @@ class Provider(object):
         :rtype: :class:`list` of :class:`dict`
         """
 
-    @abstractproperty
+    @abstractmethod
     def addresses(self):
         """List the addresses available
 
