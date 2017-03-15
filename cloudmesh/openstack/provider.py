@@ -3,6 +3,8 @@ from collections import namedtuple
 from keystoneauth1.session import Session
 
 from cloudmesh.api.provider import Provider as ProviderInterface
+from cloudmesh.api.provider import Result
+
 from cloudmesh.util import Dotdict
 
 import logging
@@ -53,18 +55,20 @@ class Provider(ProviderInterface):
         self.nova = auth.nova
 
     @property
-    def secgroups(self): raise NotImplementedError()
-    @property
-    def flavors(self): raise NotImplementedError()
-    @property
-    def images(self): raise NotImplementedError()
-    @property
-    def nodes(self): raise NotImplementedError()
-    @property
-    def name(self): raise NotImplementedError()
-    @property
-    def addresses(self): raise NotImplementedError()
+    def name(self):
+        return 'openstack'      # FIXME needs self inspection for more descriptive name
 
+    def nodes(self):
+        nodes = self.nova.servers.list()
+        results = [Result(str(node.id), Dotdict(node.to_dict()))
+                   for node in nodes]
+        return results
+
+
+    def secgroups(self): raise NotImplementedError()
+    def flavors(self): raise NotImplementedError()
+    def images(self): raise NotImplementedError()
+    def addresses(self): raise NotImplementedError()
 
     def deallocate_image(self, *args, **kwargs): raise NotImplementedError()
     def allocate_image(self, *args, **kwargs): raise NotImplementedError()
@@ -86,6 +90,8 @@ class Provider(ProviderInterface):
 if __name__ == '__main__':
     from os import getenv as e
     logging.basicConfig(level='DEBUG')
+    for name in 'requests keystoneauth'.split():
+        logging.getLogger(name).setLevel('INFO')
 
     p = Provider(
         username = e('OS_USERNAME'),
@@ -95,5 +101,6 @@ if __name__ == '__main__':
         cacert = e('OS_CACERT'),
     )
 
-    print p.keystone.users.list()
-    print p.nova.servers.list()
+    print p.name
+    for r in p.nodes():
+        print r, r.name
