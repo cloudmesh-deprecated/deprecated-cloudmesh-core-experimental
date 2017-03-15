@@ -156,9 +156,7 @@ if __name__ == '__main__':
 
     print 'Security groups'
     for r in p.secgroups():
-        print r
-        for rule in r.rules:
-            print '\t', rule.ip_protocol, rule.from_port, rule.to_port, rule.ip_range.cidr
+        print r.name
     print
 
     print 'Flavors'
@@ -176,13 +174,15 @@ if __name__ == '__main__':
         print r, r.pool, r.ip, '->', r.fixed_ip, '(', r.instance_id, ')'
     print
 
-    print 'Boot'
+    print 'Allocate node'
     image = filter(lambda r: r.name == 'CC-Ubuntu14.04', p.images())[0]
     flavor = filter(lambda r: r.name == 'm1.small', p.flavors())[0]
     networks = filter(lambda r: r.label.startswith(e('OS_TENANT_NAME')), p.networks())
     networks = [{'net-id': r.id} for r in networks]
     r = p.allocate_node(name='badi-cm2test', image=image.id, flavor=flavor, networks=networks)
     print r, p.nova.servers.find(id=r.id).status
+    print
 
     print 'Deallocate node'
     p.deallocate_node(r.id)
+    print
