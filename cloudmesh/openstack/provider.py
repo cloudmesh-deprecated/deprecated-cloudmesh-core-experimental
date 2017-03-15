@@ -54,22 +54,20 @@ class Provider(ProviderInterface):
         self.keystone = auth.keystone
         self.nova = auth.nova
 
+    def _nova_list_2_results(self, attr):
+        values = getattr(self.nova, attr).list()
+        return [Result(str(value.id), Dotdict(value.to_dict()))
+                for value in values]
+
     @property
     def name(self):
         return 'openstack'      # FIXME needs self inspection for more descriptive name
 
     def nodes(self):
-        nodes = self.nova.servers.list()
-        results = [Result(str(node.id), Dotdict(node.to_dict()))
-                   for node in nodes]
-        return results
-
+        return self._nova_list_2_results('servers')
 
     def secgroups(self):
-        secgroups = self.nova.security_groups.list()
-        results = [Result(str(sg.id), Dotdict(sg.to_dict()))
-                   for sg in secgroups]
-        return results
+        return self._nova_list_2_results('security_groups')
 
 
     def flavors(self): raise NotImplementedError()
