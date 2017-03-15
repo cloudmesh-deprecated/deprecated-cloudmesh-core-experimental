@@ -65,7 +65,13 @@ class Provider(ProviderInterface):
         return results
 
 
-    def secgroups(self): raise NotImplementedError()
+    def secgroups(self):
+        secgroups = self.nova.security_groups.list()
+        results = [Result(str(sg.id), Dotdict(sg.to_dict()))
+                   for sg in secgroups]
+        return results
+
+
     def flavors(self): raise NotImplementedError()
     def images(self): raise NotImplementedError()
     def addresses(self): raise NotImplementedError()
