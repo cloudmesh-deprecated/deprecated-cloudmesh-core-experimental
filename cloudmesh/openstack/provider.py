@@ -184,3 +184,5 @@ if __name__ == '__main__':
     r = p.allocate_node(name='badi-cm2test', image=image.id, flavor=flavor, networks=networks)
     print r, p.nova.servers.find(id=r.id).status
 
+    print 'Deallocate node'
+    p.deallocate_node(r.id)
