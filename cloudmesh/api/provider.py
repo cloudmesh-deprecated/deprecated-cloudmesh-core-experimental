@@ -1,5 +1,101 @@
 from abc import ABCMeta, abstractmethod, abstractproperty
 
+import logging
+logger = logging.getLogger(__name__)
+
+
+class Result(object):
+    """The result of invoking a method on a :class:`Provider`.
+
+    :class:`Result`\s have two properties:
+
+      1. :meth:`id` (:class:`str`): the unambiguous provider identifier
+
+      2. :meth:`attrs` (:class:`cloudmesh.util.Dot dict`): the
+           properties of the result of whatever was invoked.
+
+    A :class:`Result` has implemented several of the special method
+    inherited from :class:`object`. This allows:
+
+
+    >>> import pytest
+    >>> r = Result('foo', dict(a=42, b=24, c='hello world'))
+    >>> assert 'foo' == r, r.id
+    >>> assert list(iter(r)) == list(iter(r.attrs))
+    >>> assert r['a'] == r.attrs['a']
+    >>> assert len(r) == len(r.attrs)
+    >>> assert str(r) == 'foo'
+    >>> assert r.a == r['a']
+    >>> assert 'b' in r
+    >>> assert r.items() == r.attrs.items()
+    >>> assert r.values() == r.attrs.values()
+    >>> assert r.keys() == r.attrs.keys()
+    >>> with pytest.raises(TypeError):
+    ...     Result(0xdeadbeef, {})
+    >>> with pytest.raises(TypeError):
+    ...     Result('ok', 0xdeadbeef)
+
+
+    """
+
+    __slots__ = ['_id', '_attrs']
+
+    def __init__(self, ident, attrs):
+        if not type(ident) == str:
+            msg = '%s initialized incorrectly. `ident` should be `str` but got %s: %s' % \
+                  (self.__class__.__name__, type(ident), ident)
+            logger.warning(msg)
+            raise TypeError(msg)
+
+        if not isinstance(attrs, dict):
+            msg = '%s initialized incorrectly. `attrs` should be a `dict` but got %s: %s' % \
+                  (self.__class__.__name__, type(attrs), attrs)
+            logger.warning(msg)
+            raise TypeError(msg)
+
+        self._id = ident
+        self._attrs = attrs
+
+    @property
+    def id(self):
+        return self._id
+
+    @property
+    def attrs(self):
+        return self._attrs
+
+    def __eq__(self, other):
+        assert type(other) is str
+        return other == self.id
+
+    def __iter__(self):
+        return iter(self._attrs)
+
+    def __getitem__(self, key):
+        return self._attrs[key]
+
+    def __len__(self):
+        return len(self._attrs)
+
+    def __str__(self):
+        return self.id
+
+    def __getattr__(self, name):
+        return self[name]
+
+    def __contains__(self, item):
+        return self.attrs.__contains__(item)
+
+    def items(self):
+        return self.attrs.items()
+
+    def values(self):
+        return self.attrs.values()
+
+    def keys(self):
+        return self.attrs.keys()
+
+
 
 class Provider(object):
     __metaclass__ = ABCMeta
@@ -15,7 +111,7 @@ class Provider(object):
         """List the nodes running
 
         :returns: node information as key/value dict
-        :rtype: :class:`list` of :class:`dict`
+        :rtype: :class:`list` of :class:`Result`
         """
 
     @abstractmethod
@@ -23,7 +119,7 @@ class Provider(object):
         """List the images available
 
         :returns: information about each image
-        :rtype: :class:`list` of :class:`dict`
+        :rtype: :class:`list` of :class:`Result`
         """
 
     @abstractmethod
@@ -31,7 +127,7 @@ class Provider(object):
         """List the flavors available
 
         :returns: information about each flavor
-        :rtype: :class:`list` of :class:`dict`
+        :rtype: :class:`list` of :class:`Result`
         """
 
     @abstractmethod
@@ -39,7 +135,7 @@ class Provider(object):
         """List the security groups available
 
         :returns: information about each security group
-        :rtype: :class:`list` of :class:`dict`
+        :rtype: :class:`list` of :class:`Result`
         """
 
     @abstractmethod
@@ -47,7 +143,7 @@ class Provider(object):
         """List the addresses available
 
         :returns: information about each address
-        :rtype: :class:`list` of :class:`dict`
+        :rtype: :class:`list` of :class:`Result`
         """
 
     ################################ node methods
