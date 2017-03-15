@@ -131,3 +131,9 @@ if __name__ == '__main__':
     print 'Images'
     for r in p.images():
         print r, r.name
+    print
+
+    print 'Addresses'
+    for r in p.addresses():
+        print r, r.pool, r.ip, '->', r.fixed_ip, '(', r.instance_id, ')'
+    print
