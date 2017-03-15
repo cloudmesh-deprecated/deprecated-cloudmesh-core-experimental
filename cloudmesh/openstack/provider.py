@@ -78,20 +78,34 @@ class Provider(ProviderInterface):
     def addresses(self):
         return self._nova_list_to_results('floating_ips')
 
-    def deallocate_image(self, *args, **kwargs): raise NotImplementedError()
-    def allocate_image(self, *args, **kwargs): raise NotImplementedError()
-    def modify_key(self, *args, **kwargs): raise NotImplementedError()
-    def deallocate_key(self, *args, **kwargs): raise NotImplementedError()
-    def allocate_key(self, *args, **kwargs): raise NotImplementedError()
-    def modify_secgroup(self, *args, **kwargs): raise NotImplementedError()
-    def deallocate_secgroup(self, *args, **kwargs): raise NotImplementedError()
-    def allocate_secgroup(self, *args, **kwargs): raise NotImplementedError()
-    def disassociate_ip(self, *args, **kwargs): raise NotImplementedError()
-    def associate_ip(self, *args, **kwargs): raise NotImplementedError()
-    def deallocate_ip(self, *args, **kwargs): raise NotImplementedError()
-    def allocate_ip(self, *args, **kwargs): raise NotImplementedError()
-    def deallocate_node(self, *args, **kwargs): raise NotImplementedError()
+    ################################ nodes
+
     def allocate_node(self, *args, **kwargs): raise NotImplementedError()
+    def deallocate_node(self, *args, **kwargs): raise NotImplementedError()
+
+    ################################ images
+
+    def allocate_ip(self, *args, **kwargs): raise NotImplementedError()
+    def deallocate_ip(self, *args, **kwargs): raise NotImplementedError()
+    def associate_ip(self, *args, **kwargs): raise NotImplementedError()
+    def disassociate_ip(self, *args, **kwargs): raise NotImplementedError()
+
+    ################################ security groups
+
+    def allocate_secgroup(self, *args, **kwargs): raise NotImplementedError()
+    def deallocate_secgroup(self, *args, **kwargs): raise NotImplementedError()
+    def modify_secgroup(self, *args, **kwargs): raise NotImplementedError()
+
+    ################################ keys
+
+    def allocate_key(self, *args, **kwargs): raise NotImplementedError()
+    def deallocate_key(self, *args, **kwargs): raise NotImplementedError()
+    def modify_key(self, *args, **kwargs): raise NotImplementedError()
+
+    ################################ images
+
+    def allocate_image(self, *args, **kwargs): raise NotImplementedError()
+    def deallocate_image(self, *args, **kwargs): raise NotImplementedError()
 
 
 
