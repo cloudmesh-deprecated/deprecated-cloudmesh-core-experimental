@@ -118,3 +118,8 @@ if __name__ == '__main__':
         print r
         for rule in r.rules:
             print '\t', rule.ip_protocol, rule.from_port, rule.to_port, rule.ip_range.cidr
+    print
+
+    print 'Flavors'
+    for r in p.flavors():
+        print r, r.name, r.vcpus, r.ram, r.disk
