@@ -18,5 +18,7 @@ class Dotdict(_dotdict):
             v = d[k]
             if isinstance(v, dict):
                 v = Dotdict(v)
+            elif isinstance(v, list):
+                v = map(Dotdict, v)
             self[k] = v
 
