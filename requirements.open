@@ -1,5 +1,5 @@
 traits
-dotdict
+munch
 pyyaml
 sqlalchemy
 keystoneauth1

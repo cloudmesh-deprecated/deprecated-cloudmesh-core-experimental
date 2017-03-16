@@ -21,7 +21,6 @@ let
     callPackage path ({ inherit buildPythonPackage fetchPypi; } // attrs) ;
 
   myPythonPackages = pythonPackages // (with pythonPackages; {
-    dotdict = callPythonPackage ./requirements/dotdict.nix {};
     python-novaclient = novaclient;
     python-keystoneclient = keystoneclient;
   });

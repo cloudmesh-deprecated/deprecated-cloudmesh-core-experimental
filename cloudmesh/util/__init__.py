@@ -1,24 +1,11 @@
 from __future__ import absolute_import
 
-from dotdict import dotdict as _dotdict
+from munch import munchify
+
+__all__ = ['Dotdict']
 
 
-class Dotdict(_dotdict):
+# The `Munch()` constructor does not recursively "munchify" a dict.
+# To do so, we use the `munchify` "smart constructor"
 
-    def __init__(self, d):
-        """
-        Recursively created a dotdict
-
-        :param dict d: dictionary
-        :returns: dotted dict
-        :rtype: :class:`Dotdict`
-        """
-
-        for k in d.keys():
-            v = d[k]
-            if isinstance(v, dict):
-                v = Dotdict(v)
-            elif isinstance(v, list):
-                v = map(Dotdict, v)
-            self[k] = v
-
+Dotdict = munchify
