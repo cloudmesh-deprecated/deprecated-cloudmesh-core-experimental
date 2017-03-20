@@ -110,7 +110,10 @@ class Provider(ProviderInterface):
 
     ################################ images
 
-    def allocate_ip(self, *args, **kwargs): raise NotImplementedError()
+    def allocate_ip(self):
+        ip = self._cloud.available_floating_ip()
+        return Result(str(ip.id), ip)
+
     def deallocate_ip(self, *args, **kwargs): raise NotImplementedError()
     def associate_ip(self, *args, **kwargs): raise NotImplementedError()
     def disassociate_ip(self, *args, **kwargs): raise NotImplementedError()
