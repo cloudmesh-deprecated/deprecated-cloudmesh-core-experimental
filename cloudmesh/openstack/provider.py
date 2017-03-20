@@ -1,6 +1,6 @@
-from collections import namedtuple
+import shade
 
-from keystoneauth1.session import Session
+from collections import namedtuple
 
 from cloudmesh.api.provider import Provider as ProviderInterface
 from cloudmesh.api.provider import Result
@@ -42,21 +42,13 @@ def auth_keystone_v2(**authinfo):
 
 class Provider(ProviderInterface):
 
-    def __init__(self, keystone_version='2', **authinfo):
+    def __init__(self, **kwargs):
 
-        if keystone_version == '2':
-            auth = auth_keystone_v2(**authinfo)
-        else:
-            msg = 'Unsupported keystone version {}'.format(keystone_version)
-            logger.critical(msg)
-            raise NotImplementedError(msg)
+        self._cloud = shade.openstack_cloud(**kwargs)
 
-        self.keystone = auth.keystone
-        self.nova = auth.nova
-
-    def _nova_list_to_results(self, attr):
-        values = getattr(self.nova, attr).list()
-        return [Result(str(value.id), Dotdict(value.to_dict()))
+    def _cloud_list_to_results(self, attr, *args, **kwargs):
+        values = Dotdict(getattr(self._cloud, 'list_%s' % attr)(*args, **kwargs))
+        return [Result(str(value.id), value)
                 for value in values]
 
     @property
@@ -64,31 +56,31 @@ class Provider(ProviderInterface):
         return 'openstack'      # FIXME needs self inspection for more descriptive name
 
     def nodes(self):
-        return self._nova_list_to_results('servers')
+        return self._cloud_list_to_results('servers')
 
     def secgroups(self):
-        return self._nova_list_to_results('security_groups')
+        return self._cloud_list_to_results('security_groups')
 
     def flavors(self):
-        return self._nova_list_to_results('flavors')
+        return self._cloud_list_to_results('flavors')
 
     def images(self):
-        return self._nova_list_to_results('images')
+        return self._cloud_list_to_results('images')
 
     def addresses(self):
-        return self._nova_list_to_results('floating_ips')
+        return self._cloud_list_to_results('floating_ips')
 
     def networks(self):
-        return self._nova_list_to_results('networks')
+        return self._cloud_list_to_results('networks')
 
     ################################ nodes
 
-    def allocate_node(self, name=None, image=None, flavor=None, networks=None, **kwargs):
+    def allocate_node(self, name=None, image=None, flavor=None, network=None, **kwargs):
 
         # Sanity check
         logger.debug('OpenStack allocate_node sanity check')
         vars = locals()
-        required = ['name', 'image', 'flavor', 'networks']
+        required = ['name', 'image', 'flavor', 'network']
         for _param_name in required:
             val = vars[_param_name]
             if not val:
@@ -99,13 +91,18 @@ class Provider(ProviderInterface):
         logger.info('Allocating OpenStack node with name=%s, image=%s, flavor=%s, networks=%s, %s',
                     name, image, flavor, networks, str(kwargs))
 
-        server = self.nova.servers.create(name=name, image=image, flavor=flavor, nics=networks, **kwargs)
-        return Result(str(server.id), Dotdict(server.to_dict()))
+        server = self._cloud.create_server(name=name,
+                                           image=image,
+                                           flavor=flavor,
+                                           network=network,
+                                           **kwargs)
+
+        return Result(str(server.id), Dotdict(server))
 
 
     def deallocate_node(self, ident):
         logger.info('Deallocating OpenStack node %s', ident)
-        self.nova.servers.find(id=ident).delete()
+        self._cloud.delete_server(ident, delete_ips=True)
 
     def get_node(self, ident):
         n = Dotdict(self._cloud.get_server(ident))
@@ -147,13 +144,7 @@ if __name__ == '__main__':
     for name in 'requests keystoneauth'.split():
         logging.getLogger(name).setLevel('INFO')
 
-    p = Provider(
-        username = e('OS_USERNAME'),
-        password = e('OS_PASSWORD'),
-        tenant_name = e('OS_TENANT_NAME'),
-        auth_url = e('OS_AUTH_URL'),
-        cacert = e('OS_CACERT'),
-    )
+    p = Provider()
 
     print p.name
 
@@ -179,18 +170,20 @@ if __name__ == '__main__':
 
     print 'Addresses'
     for r in p.addresses():
-        print r, r.pool, r.ip, '->', r.fixed_ip, '(', r.instance_id, ')'
+        print r.id, r.floating_ip_address, '->', r.fixed_ip_address
     print
 
     print 'Allocate node'
-    image = filter(lambda r: r.name == 'CC-Ubuntu14.04', p.images())[0]
-    flavor = filter(lambda r: r.name == 'm1.small', p.flavors())[0]
-    networks = filter(lambda r: r.label.startswith(e('OS_TENANT_NAME')), p.networks())
-    networks = [{'net-id': r.id} for r in networks]
-    r = p.allocate_node(name='badi-cm2test', image=image.id, flavor=flavor, networks=networks)
-    print r, p.nova.servers.find(id=r.id).status
+    networks = filter(lambda r: r.name.startswith(e('OS_TENANT_NAME')), p.networks())[0]
+    node = p.allocate_node(name='badi-cm2test',
+                           image='CC-Ubuntu14.04',
+                           flavor='m1.small',
+                           network=networks)
+    print node, p.get_node(node.id).status
     print
 
+    ip = p.allocate_ip()
+
     print 'Deallocate node'
-    p.deallocate_node(r.id)
+    p.deallocate_node(node.id)
     print
