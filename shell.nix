@@ -20,10 +20,12 @@ let
   callPythonPackage = path: attrs: with pythonPackages;
     callPackage path ({ inherit buildPythonPackage fetchPypi; } // attrs) ;
 
-  myPythonPackages = pythonPackages // (with pythonPackages; {
-    python-novaclient = novaclient;
-    python-keystoneclient = keystoneclient;
-  });
+  packages = import ./requirements.nix {
+    inherit pkgs fetchurl;
+    inherit (pythonPackages) buildPythonPackage;
+  };
+
+  myPythonPackages = pythonPackages // packages;
 
   readRequirements = file:
     let
@@ -44,16 +46,12 @@ let
   requirements      = findPythonPackages ./requirements.open;
   test_requirements = findPythonPackages ./test_requirements.open;
 
-  python = pythonFull.withPackages (_: requirements ++ test_requirements);
+  python = pythonFull.buildEnv.override {
+    extraLibs = requirements ++ test_requirements;
+    ignoreCollisions = true;
+  };
 
-  buildInputs = [
-    cacert
-    libffi
-    openssl
-    pkgconfig
-    sqlite
-    zlib
-  ];
+  buildInputs = [ ];
 
 in
 

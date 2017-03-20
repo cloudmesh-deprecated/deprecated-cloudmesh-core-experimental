@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+pip2nix \
+    -o requirements.nix \
+    -r requirements.open \
+    -p vcversioner==2.16.0.0 \
+    -p requests==2.12.5 \
+    -i cryptography openssl \
+    -i cffi libffi \
+    -s cryptography packaging \
+    -s cmd2 six,pyparsing \
+    -s debtcollector six \
+    -s jsonschema vcversioner \
+    -s oslo.i18n six \
+    -s python-swiftclient six \
+    -s oslo.utils pyparsing \
+    -s stevedore six \
+    -s os-client-config appdirs \
+    -s warlock six \
+    -s munch six
