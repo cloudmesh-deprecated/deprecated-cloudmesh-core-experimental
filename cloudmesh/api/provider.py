@@ -166,6 +166,13 @@ class Provider(object):
         :param ident: the unambiguous provider identifier for the node to remove
         """
 
+    @abstractmethod
+    def get_node(self, ident):
+        """Retrieve a node
+
+        :param: ident: the unambiguous provider identifier
+        """
+
     ################################ ip address methods
 
     def allocate_ip(self, **kwargs):
@@ -194,6 +201,13 @@ class Provider(object):
         :param str node: unambiguous provider identifier
         """
 
+    @abstractmethod
+    def get_ip(self, ident):
+        """Retrieve a ip
+
+        :param: ident: the unambiguous provider identifier
+        """
+
     ################################ security group methods
 
     def allocate_secgroup(self, **kwargs):
@@ -216,6 +230,13 @@ class Provider(object):
         This should not change the identifier
 
         :param str ident: unambiguous identifier
+        """
+
+    @abstractmethod
+    def get_secgroup(self, ident):
+        """Retrieve a secgroup
+
+        :param: ident: the unambiguous provider identifier
         """
 
     ################################ key methods
@@ -243,6 +264,13 @@ class Provider(object):
         :param kwargs: properties to update
         """
 
+    @abstractmethod
+    def get_key(self, ident):
+        """Retrieve a key
+
+        :param: ident: the unambiguous provider identifier
+        """
+
     ################################ image methods
 
     def allocate_image(self, **kwargs):
@@ -256,5 +284,12 @@ class Provider(object):
         """Deallocate an image
 
         :param str ident: unambiguous provider-specific identifier
+        """
+
+    @abstractmethod
+    def get_key(self, ident):
+        """Retrieve a key
+
+        :param: ident: the unambiguous provider identifier
         """
 

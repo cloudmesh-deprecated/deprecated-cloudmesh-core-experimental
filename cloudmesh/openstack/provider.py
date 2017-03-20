@@ -107,29 +107,37 @@ class Provider(ProviderInterface):
         logger.info('Deallocating OpenStack node %s', ident)
         self.nova.servers.find(id=ident).delete()
 
+    def get_node(self, ident):
+        n = Dotdict(self._cloud.get_server(ident))
+        return Result(str(n.id), n)
+
     ################################ images
 
     def allocate_ip(self, *args, **kwargs): raise NotImplementedError()
     def deallocate_ip(self, *args, **kwargs): raise NotImplementedError()
     def associate_ip(self, *args, **kwargs): raise NotImplementedError()
     def disassociate_ip(self, *args, **kwargs): raise NotImplementedError()
+    def get_ip(self, *args, **kwargs): raise NotImplementedError()
 
     ################################ security groups
 
     def allocate_secgroup(self, *args, **kwargs): raise NotImplementedError()
     def deallocate_secgroup(self, *args, **kwargs): raise NotImplementedError()
     def modify_secgroup(self, *args, **kwargs): raise NotImplementedError()
+    def get_secgroup(self, *args, **kwargs): raise NotImplementedError()
 
     ################################ keys
 
     def allocate_key(self, *args, **kwargs): raise NotImplementedError()
     def deallocate_key(self, *args, **kwargs): raise NotImplementedError()
     def modify_key(self, *args, **kwargs): raise NotImplementedError()
+    def get_key(self, *args, **kwargs): raise NotImplementedError()
 
     ################################ images
 
     def allocate_image(self, *args, **kwargs): raise NotImplementedError()
     def deallocate_image(self, *args, **kwargs): raise NotImplementedError()
+    def get_image(self, *args, **kwargs): raise NotImplementedError()
 
 
 
