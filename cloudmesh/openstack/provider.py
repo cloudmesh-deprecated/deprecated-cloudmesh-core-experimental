@@ -140,7 +140,7 @@ class Provider(ProviderInterface):
 
 if __name__ == '__main__':
     from os import getenv as e
-    logging.basicConfig(level='DEBUG')
+    logging.basicConfig(level='INFO')
     for name in 'requests keystoneauth'.split():
         logging.getLogger(name).setLevel('INFO')
 
