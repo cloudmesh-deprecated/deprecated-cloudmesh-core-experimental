@@ -185,7 +185,10 @@ if __name__ == '__main__':
     print node, p.get_node(node.id).status
     print
 
+    print 'IP'
     ip = p.allocate_ip()
+    print ip.id, ip.floating_ip_address
+    print
 
     print 'Deallocate node'
     p.deallocate_node(node.id)
