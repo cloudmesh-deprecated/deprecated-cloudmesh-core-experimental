@@ -167,3 +167,7 @@ if __name__ == '__main__':
     print 'Deallocate node'
     p.deallocate_node(node.id)
     print
+
+    print 'Deallocate floating ip'
+    p.deallocate_ip(ip.id)
+    print
