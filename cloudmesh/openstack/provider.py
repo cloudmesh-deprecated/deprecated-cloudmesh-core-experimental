@@ -170,6 +170,10 @@ if __name__ == '__main__':
     print ip.id, ip.floating_ip_address
     print
 
+    print 'Associate', ip.floating_ip_address, '->', node.name
+    p.associate_ip(ip.id, node.id)
+    print
+
     print 'Deallocate node'
     p.deallocate_node(node.id)
     print
