@@ -135,7 +135,11 @@ class Provider(ProviderInterface):
         logger.debug('Deallocating key %s', ident)
         self._cloud.delete_keypair(ident)
 
-    def modify_key(self, *args, **kwargs): raise NotImplementedError()
+    def modify_key(self, name, value, fingerprint):
+        logger.debug('Replacing key %s with %s', key, fingerprint)
+        self.deallocate_key(name)
+        self.allocate_key(name, value, fingerprint)
+
     def get_key(self, *args, **kwargs): raise NotImplementedError()
 
     ################################ images
