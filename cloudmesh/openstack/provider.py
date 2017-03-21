@@ -177,6 +177,10 @@ if __name__ == '__main__':
     p.associate_ip(ip.id, node.id)
     print
 
+    print 'Disassociate', ip.floating_ip_address
+    p.disassociate_ip(ip.id, node.id)
+    print
+
     print 'Deallocate node'
     p.deallocate_node(node.id)
     print
