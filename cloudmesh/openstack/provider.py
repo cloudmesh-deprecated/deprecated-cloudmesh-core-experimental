@@ -176,6 +176,11 @@ if __name__ == '__main__':
     print ip.id, ip.floating_ip_address
     print
 
+    print 'Get IP'
+    r = p.get_ip(ip.id)
+    print r.id, ':', r.floating_ip_address
+    print
+
     print 'Associate', ip.floating_ip_address, '->', node.name
     p.associate_ip(ip.id, node.id)
     print
