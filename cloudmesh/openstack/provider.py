@@ -131,7 +131,10 @@ class Provider(ProviderInterface):
             logger.debug('Registering %s %s', name, fingerprint)
             self._cloud.create_keypair(name, value)
 
-    def deallocate_key(self, *args, **kwargs): raise NotImplementedError()
+    def deallocate_key(self, ident):
+        logger.debug('Deallocating key %s', ident)
+        self._cloud.delete_keypair(ident)
+
     def modify_key(self, *args, **kwargs): raise NotImplementedError()
     def get_key(self, *args, **kwargs): raise NotImplementedError()
 
