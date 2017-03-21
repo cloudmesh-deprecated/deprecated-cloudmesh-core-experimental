@@ -136,7 +136,7 @@ class Provider(ProviderInterface):
         self._cloud.delete_keypair(ident)
 
     def modify_key(self, name, value, fingerprint):
-        logger.debug('Replacing key %s with %s', key, fingerprint)
+        logger.debug('Replacing key %s with %s', name, fingerprint)
         self.deallocate_key(name)
         self.allocate_key(name, value, fingerprint)
 
