@@ -140,7 +140,10 @@ class Provider(ProviderInterface):
         self.deallocate_key(name)
         self.allocate_key(name, value, fingerprint)
 
-    def get_key(self, *args, **kwargs): raise NotImplementedError()
+    def get_key(self, ident):
+        logger.debug('Getting key %s', ident)
+        r = Dotdict(self._cloud.get_keypair(ident))
+        return Result(str(r.id), r)
 
     ################################ images
 
