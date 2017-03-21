@@ -85,7 +85,10 @@ class Provider(ProviderInterface):
         ip = self._cloud.available_floating_ip()
         return Result(str(ip.id), ip)
 
-    def deallocate_ip(self, *args, **kwargs): raise NotImplementedError()
+    def deallocate_ip(self, ident):
+        logger.debug('Deallocating IP %s', ident)
+        self._cloud.delete_floating_ip(ident)
+
     def associate_ip(self, *args, **kwargs): raise NotImplementedError()
     def disassociate_ip(self, *args, **kwargs): raise NotImplementedError()
     def get_ip(self, *args, **kwargs): raise NotImplementedError()
