@@ -187,7 +187,6 @@ if __name__ == '__main__':
                    'd6:28:ee:83:6a:0d:bc:1c:3c:af:40:75:67:fa:13:41')
     print
 
-
     print 'Allocate node'
     networks = filter(lambda r: r.name.startswith(e('OS_TENANT_NAME')), p.networks())[0]
     node = p.allocate_node(name='badi-cm2test',
