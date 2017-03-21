@@ -114,7 +114,23 @@ class Provider(ProviderInterface):
 
     ################################ keys
 
-    def allocate_key(self, *args, **kwargs): raise NotImplementedError()
+    def allocate_key(self, name, value, fingerprint):
+        logger.debug('Allocating keypair %s %s', name, fingerprint)
+        known = self._cloud.get_keypair(name)
+
+        if known and known.fingerprint == fingerprint:
+            logger.debug('Key %s %s is already registered')
+            return Result(str(known.id), Dotdict(known))
+
+        elif known and not known.fingerprint == fingerprint:
+            msg = 'A key by name %s is already registered but its fingerprint %s does not match %s'
+            logger.warning(msg, name, known.fingerprint, fingerprint)
+            raise ValueError(name, known.fingerprint, fingerprint)
+
+        else:
+            logger.debug('Registering %s %s', name, fingerprint)
+            self._cloud.create_keypair(name, value)
+
     def deallocate_key(self, *args, **kwargs): raise NotImplementedError()
     def modify_key(self, *args, **kwargs): raise NotImplementedError()
     def get_key(self, *args, **kwargs): raise NotImplementedError()
