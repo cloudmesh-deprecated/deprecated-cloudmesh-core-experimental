@@ -96,7 +96,10 @@ class Provider(ProviderInterface):
         ip = ip_munch.floating_ip_address
         self._cloud.add_ip_list(node, [ip])
 
-    def disassociate_ip(self, *args, **kwargs): raise NotImplementedError()
+    def disassociate_ip(self, ip_ident, node_ident):
+        logger.debug('Disassociating IP %s from node %s', ip_ident, node_ident)
+        self._cloud.detach_ip_from_server(node_ident, ip_ident)
+
     def get_ip(self, *args, **kwargs): raise NotImplementedError()
 
     ################################ security groups
