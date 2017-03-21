@@ -182,6 +182,7 @@ if __name__ == '__main__':
     print
 
     print 'Keys'
+    p.deallocate_key('testname')
     p.allocate_key('testname', open('testing/data/testkey.pub').read(),
                    'd6:28:ee:83:6a:0d:bc:1c:3c:af:40:75:67:fa:13:41')
     print
