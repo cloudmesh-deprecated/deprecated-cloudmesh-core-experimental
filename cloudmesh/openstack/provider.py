@@ -100,7 +100,10 @@ class Provider(ProviderInterface):
         logger.debug('Disassociating IP %s from node %s', ip_ident, node_ident)
         self._cloud.detach_ip_from_server(node_ident, ip_ident)
 
-    def get_ip(self, *args, **kwargs): raise NotImplementedError()
+    def get_ip(self, ident):
+        logger.debug('Retrieving IP %s', ident)
+        ip = Dotdict(self._cloud.get_floating_ip(ident))
+        return Result(str(ip.id), ip)
 
     ################################ security groups
 
