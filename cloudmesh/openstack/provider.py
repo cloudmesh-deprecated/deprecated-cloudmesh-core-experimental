@@ -89,7 +89,13 @@ class Provider(ProviderInterface):
         logger.debug('Deallocating IP %s', ident)
         self._cloud.delete_floating_ip(ident)
 
-    def associate_ip(self, *args, **kwargs): raise NotImplementedError()
+    def associate_ip(self, ip_ident, node_ident):
+        logger.debug('Associating IP %s to node %s', ip_ident, node_ident)
+        node = self._cloud.get_server(node_ident)
+        ip_munch = self._cloud.get_floating_ip(ip_ident)
+        ip = ip_munch.floating_ip_address
+        self._cloud.add_ip_list(node, [ip])
+
     def disassociate_ip(self, *args, **kwargs): raise NotImplementedError()
     def get_ip(self, *args, **kwargs): raise NotImplementedError()
 
