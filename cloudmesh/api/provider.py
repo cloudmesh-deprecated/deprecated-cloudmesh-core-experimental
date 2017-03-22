@@ -290,7 +290,7 @@ class Provider(object):
         """
 
     @abstractmethod
-    def get_key(self, ident):
+    def get_image(self, ident):
         """Retrieve a key
 
         :param: ident: the unambiguous provider identifier
