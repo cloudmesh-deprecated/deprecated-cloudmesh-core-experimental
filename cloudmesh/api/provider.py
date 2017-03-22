@@ -97,9 +97,11 @@ class Result(object):
         return self.attrs.keys()
 
 
-
 @add_metaclass(ABCMeta)
 class Provider(object):
+    """A low-level implementation interfacing with the provider.
+    Methods accept simple IDs and result :class:`Result`\ s.
+    """
 
     ################################ properties
 
