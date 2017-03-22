@@ -19,6 +19,10 @@ class Resource(object):
     def deallocate(self):
         "Deallocate this resource"
 
+    @abstractmethod
+    def refresh(self):
+        "Refresh the resource properties from the remote provider"
+
 
 class ResourceComposite(Resource):
 
