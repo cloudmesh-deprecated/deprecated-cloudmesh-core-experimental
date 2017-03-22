@@ -1,10 +1,11 @@
 from abc import ABCMeta, abstractmethod, abstractproperty
+from six import add_metaclass
 
 from cloudmesh.api.resources import Resource as ResourceInterface
 
 
+@add_metaclass(ABCMeta)
 class CloudResource(ResourceInterface):
-    __metaclass__ = ABCMeta
 
     @abstractmethod
     def __init__(self, **specification):
@@ -17,8 +18,8 @@ class CloudResource(ResourceInterface):
 
 ################################################################ Node
 
+@add_metaclass(ABCMeta)
 class Node(CloudResource):
-    __metaclass__ = ABCMeta
 
     @abstractproperty
     def name(self):
@@ -71,8 +72,8 @@ class Node(CloudResource):
 
 ################################################################ User
 
+@add_metaclass(ABCMeta)
 class User(CloudResource):
-    __metaclass__ = ABCMeta
 
     @abstractproperty
     def name(self):
@@ -99,8 +100,8 @@ class User(CloudResource):
 
 ################################################################ Key
 
+@add_metaclass(ABCMeta)
 class Key(CloudResource):
-    __metaclass__ = ABCMeta
 
     @abstractproperty
     def fingerprint(self):
@@ -117,8 +118,8 @@ class Key(CloudResource):
 
 ################################################################ Secgroup
 
+@add_metaclass(ABCMeta)
 class Secgroup(CloudResource):
-    __metaclass__ = ABCMeta
 
     @abstractproperty
     def protocols(self):
@@ -152,8 +153,8 @@ class Secgroup(CloudResource):
 
 ################################################################ Address
 
+@add_metaclass(ABCMeta)
 class Address(CloudResource):
-    __metaclass__ = ABCMeta
 
     def ip(self):
         "The default IP address"
@@ -166,8 +167,8 @@ class Address(CloudResource):
 
 ################################################################ Cluster
 
+@add_metaclass(ABCMeta)
 class Cluster(CloudResource):
-    __metaclass__ = ABCMeta
 
     @abstractproperty
     def nodes(self):
@@ -179,8 +180,8 @@ class Cluster(CloudResource):
 
 ################################################################ Image
 
+@add_metaclass(ABCMeta)
 class Image(CloudResource):
-    __metaclass__ = ABCMeta
 
     @abstractproperty
     def os_flavor(self):

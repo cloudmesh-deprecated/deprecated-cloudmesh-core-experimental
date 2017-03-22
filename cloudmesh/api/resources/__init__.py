@@ -1,10 +1,11 @@
 from abc import ABCMeta, abstractmethod, abstractproperty
+from six import add_metaclass
 
 from cloudmesh.util.patterns import Composite
 
 
+@add_metaclass(ABCMeta)
 class Resource(object):
-    __metaclass__ = ABCMeta
 
     @abstractproperty
     def data(self):

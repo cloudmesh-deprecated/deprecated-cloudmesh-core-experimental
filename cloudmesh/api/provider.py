@@ -1,4 +1,5 @@
 from abc import ABCMeta, abstractmethod, abstractproperty
+from six import add_metaclass
 
 import logging
 logger = logging.getLogger(__name__)
@@ -97,8 +98,8 @@ class Result(object):
 
 
 
+@add_metaclass(ABCMeta)
 class Provider(object):
-    __metaclass__ = ABCMeta
 
     ################################ properties
 
