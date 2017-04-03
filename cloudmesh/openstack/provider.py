@@ -153,6 +153,10 @@ class Provider(ProviderInterface):
 
 
 
+def test_provider():
+    Provider()
+
+
 if __name__ == '__main__':
     from os import getenv as e
     logging.basicConfig(level='INFO')
