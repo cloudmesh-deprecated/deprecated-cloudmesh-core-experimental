@@ -4,7 +4,7 @@ This module defines the database access layer to Cloudmesh
 
 import types
 
-from traits.api import Any, Bool, HasTraits, Interface
+from traits.api import Any, Bool, HasTraits, Interface, List
 
 
 class Entity(HasTraits):

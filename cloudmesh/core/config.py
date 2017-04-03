@@ -11,7 +11,7 @@ class Config(HasTraits):
     """
 
     filename = File(exists=True)
-    _config = Instance(Dotdict)
+    _config = Instance(dict)
 
     def __init__(self, filename=None):
         super(Config, self).__init__(filename=filename)
@@ -77,7 +77,6 @@ cloudmesh:
     yaml.write(s)
 
     c = Config(yaml.strpath)
-    assert isinstance(c, Config)
 
     kilo = c.get_cloud('kilo')
     assert isinstance(kilo, dict)
