@@ -51,7 +51,7 @@ let
     ignoreCollisions = true;
   };
 
-  buildInputs = [ ];
+  buildInputs = [ awscli ];
 
 in
 

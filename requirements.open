@@ -4,3 +4,4 @@ munch
 pyyaml
 sqlalchemy
 shade
+boto3

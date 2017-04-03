@@ -17,4 +17,5 @@ pip2nix \
     -s stevedore six \
     -s os-client-config appdirs \
     -s warlock six \
-    -s munch six
+    -s munch six \
+    -s python-dateutil six
