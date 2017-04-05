@@ -22,6 +22,18 @@ rec {
       doCheck = false;
     }
     ;
+  beautifulsoup4 = buildPythonPackage {
+      name = "beautifulsoup4-4.5.3";
+      src = fetchurl {
+        url = "https://pypi.python.org/packages/9b/a5/c6fa2d08e6c671103f9508816588e0fb9cec40444e8e72993f3d4c325936/beautifulsoup4-4.5.3.tar.gz";
+        sha256 = "b21ca09366fa596043578fd4188b052b46634d22059e68dd0077d9ee77e08a3e";
+      };
+      format = "setuptools";
+      buildInputs = [  ];
+      propagatedBuildInputs = [  ];
+      doCheck = false;
+    }
+    ;
   boto3 = buildPythonPackage {
       name = "boto3-1.4.4";
       src = fetchurl {
