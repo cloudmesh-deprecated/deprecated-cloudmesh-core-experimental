@@ -1,0 +1,42 @@
+# -*- mode: yaml -*-
+
+requirements:
+  inputs:
+    - requirements.open
+  output: requirements.nix
+  packages:
+    - vcversioner==2.16.0.0
+    - requests==2.12.5
+
+build_inputs:
+  cryptography:
+    - openssl
+  cffi:
+    - libffi
+
+setup_requires:
+  cryptography:
+    - packaging
+  cmd2:
+    - six
+    - pyparsing
+  debtcollector:
+    - six
+  jsonschema:
+    - vcversioner
+  oslo.i18n:
+    - six
+  python-swiftclient:
+    - six
+  oslo.utils:
+    - pyparsing
+  stevedore:
+    - six
+  os-client-config:
+    - appdirs
+  warlock:
+    - six
+  munch:
+    - six
+  python-dateutil:
+    - six
