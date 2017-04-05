@@ -54,7 +54,7 @@ rec {
       };
       format = "wheel";
       buildInputs = [  ];
-      propagatedBuildInputs = [ python-dateutil docutils jmespath ];
+      propagatedBuildInputs = [ docutils jmespath python-dateutil ];
       doCheck = false;
     }
     ;
@@ -66,7 +66,7 @@ rec {
       };
       format = "wheel";
       buildInputs = [  ];
-      propagatedBuildInputs = [ pyyaml pbr stevedore prettytable unicodecsv cmd2 ];
+      propagatedBuildInputs = [ cmd2 pbr prettytable pyyaml stevedore unicodecsv ];
       doCheck = false;
     }
     ;
@@ -78,7 +78,7 @@ rec {
       };
       format = "setuptools";
       buildInputs = [  ];
-      propagatedBuildInputs = [ six pyparsing ];
+      propagatedBuildInputs = [ pyparsing six ];
       doCheck = false;
     }
     ;
@@ -90,7 +90,7 @@ rec {
       };
       format = "wheel";
       buildInputs = [  ];
-      propagatedBuildInputs = [ wrapt pbr funcsigs six ];
+      propagatedBuildInputs = [ funcsigs pbr six wrapt ];
       doCheck = false;
     }
     ;
@@ -258,7 +258,7 @@ rec {
       };
       format = "wheel";
       buildInputs = [  ];
-      propagatedBuildInputs = [ requests pbr positional stevedore iso8601 wrapt ];
+      propagatedBuildInputs = [ iso8601 pbr positional requests stevedore wrapt ];
       doCheck = false;
     }
     ;
@@ -330,7 +330,7 @@ rec {
       };
       format = "wheel";
       buildInputs = [  ];
-      propagatedBuildInputs = [ requests deprecation pbr positional stevedore iso8601 wrapt os-client-config pyyaml keystoneauth1 requestsexceptions ];
+      propagatedBuildInputs = [ deprecation iso8601 keystoneauth1 os-client-config pbr positional pyyaml requests requestsexceptions stevedore wrapt ];
       doCheck = false;
     }
     ;
@@ -342,7 +342,7 @@ rec {
       };
       format = "wheel";
       buildInputs = [  ];
-      propagatedBuildInputs = [ pyyaml keystoneauth1 requestsexceptions appdirs ];
+      propagatedBuildInputs = [ appdirs keystoneauth1 pyyaml requestsexceptions ];
       doCheck = false;
     }
     ;
@@ -354,7 +354,7 @@ rec {
       };
       format = "wheel";
       buildInputs = [  ];
-      propagatedBuildInputs = [ cliff wrapt funcsigs prettytable netifaces cmd2 oslo-utils pyyaml pbr simplejson netaddr debtcollector monotonic stevedore babel unicodecsv pytz oslo-i18n requestsexceptions requests positional os-client-config iso8601 keystoneauth1 ];
+      propagatedBuildInputs = [ babel cliff cmd2 debtcollector funcsigs iso8601 keystoneauth1 monotonic netaddr netifaces os-client-config oslo-i18n oslo-utils pbr positional prettytable pytz pyyaml requests requestsexceptions simplejson stevedore unicodecsv wrapt ];
       doCheck = false;
     }
     ;
@@ -366,7 +366,7 @@ rec {
       };
       format = "wheel";
       buildInputs = [  ];
-      propagatedBuildInputs = [ babel debtcollector oslo-i18n pbr funcsigs stevedore wrapt pytz rfc3986 netaddr ];
+      propagatedBuildInputs = [ babel debtcollector funcsigs netaddr oslo-i18n pbr pytz rfc3986 stevedore wrapt ];
       doCheck = false;
     }
     ;
@@ -390,7 +390,7 @@ rec {
       };
       format = "wheel";
       buildInputs = [  ];
-      propagatedBuildInputs = [ oslo-utils babel debtcollector monotonic funcsigs pbr iso8601 pytz wrapt netifaces msgpack-python oslo-i18n netaddr ];
+      propagatedBuildInputs = [ babel debtcollector funcsigs iso8601 monotonic msgpack-python netaddr netifaces oslo-i18n oslo-utils pbr pytz wrapt ];
       doCheck = false;
     }
     ;
@@ -402,7 +402,7 @@ rec {
       };
       format = "wheel";
       buildInputs = [  ];
-      propagatedBuildInputs = [ debtcollector monotonic oslo-i18n iso8601 netifaces netaddr pyparsing ];
+      propagatedBuildInputs = [ debtcollector iso8601 monotonic netaddr netifaces oslo-i18n pyparsing ];
       doCheck = false;
     }
     ;
@@ -450,7 +450,7 @@ rec {
       };
       format = "wheel";
       buildInputs = [  ];
-      propagatedBuildInputs = [ oslo-utils iso8601 babel netaddr debtcollector oslo-i18n pbr monotonic positional stevedore requests prettytable wrapt netifaces pytz funcsigs keystoneauth1 simplejson ];
+      propagatedBuildInputs = [ babel debtcollector funcsigs iso8601 keystoneauth1 monotonic netaddr netifaces oslo-i18n oslo-utils pbr positional prettytable pytz requests simplejson stevedore wrapt ];
       doCheck = false;
     }
     ;
@@ -474,7 +474,7 @@ rec {
       };
       format = "wheel";
       buildInputs = [  ];
-      propagatedBuildInputs = [ cliff unicodecsv oslo-i18n osc-lib prettytable netifaces pyyaml oslo-utils cmd2 pbr jsonschema simplejson netaddr debtcollector monotonic stevedore requests wrapt pytz funcsigs requestsexceptions babel functools32 positional os-client-config iso8601 keystoneauth1 ];
+      propagatedBuildInputs = [ babel cliff cmd2 debtcollector funcsigs functools32 iso8601 jsonschema keystoneauth1 monotonic netaddr netifaces os-client-config osc-lib oslo-i18n oslo-utils pbr positional prettytable pytz pyyaml requests requestsexceptions simplejson stevedore unicodecsv wrapt ];
       doCheck = false;
     }
     ;
@@ -486,7 +486,7 @@ rec {
       };
       format = "wheel";
       buildInputs = [  ];
-      propagatedBuildInputs = [ oslo-i18n prettytable netifaces warlock oslo-utils pbr jsonschema netaddr debtcollector jsonpointer monotonic stevedore iso8601 wrapt pytz funcsigs babel requests functools32 positional jsonpatch keystoneauth1 ];
+      propagatedBuildInputs = [ babel debtcollector funcsigs functools32 iso8601 jsonpatch jsonpointer jsonschema keystoneauth1 monotonic netaddr netifaces oslo-i18n oslo-utils pbr positional prettytable pytz requests stevedore warlock wrapt ];
       doCheck = false;
     }
     ;
@@ -498,7 +498,7 @@ rec {
       };
       format = "wheel";
       buildInputs = [  ];
-      propagatedBuildInputs = [ dogpile-cache funcsigs os-client-config cliff oslo-serialization python-keystoneclient osc-lib prettytable netifaces pyyaml warlock oslo-utils python-novaclient deprecation pbr rfc3986 jsonschema simplejson python-openstackclient oslo-config netaddr debtcollector jsonpointer monotonic python-cinderclient stevedore iso8601 unicodecsv pytz oslo-i18n requestsexceptions babel functools32 requests python-glanceclient cmd2 positional msgpack-python jsonpatch wrapt keystoneauth1 openstacksdk ];
+      propagatedBuildInputs = [ babel cliff cmd2 debtcollector deprecation dogpile-cache funcsigs functools32 iso8601 jsonpatch jsonpointer jsonschema keystoneauth1 monotonic msgpack-python netaddr netifaces openstacksdk os-client-config osc-lib oslo-config oslo-i18n oslo-serialization oslo-utils pbr positional prettytable python-cinderclient python-glanceclient python-keystoneclient python-novaclient python-openstackclient pytz pyyaml requests requestsexceptions rfc3986 simplejson stevedore unicodecsv warlock wrapt ];
       doCheck = false;
     }
     ;
@@ -510,7 +510,7 @@ rec {
       };
       format = "wheel";
       buildInputs = [  ];
-      propagatedBuildInputs = [ oslo-config oslo-serialization keystoneauth1 ];
+      propagatedBuildInputs = [ keystoneauth1 oslo-config oslo-serialization ];
       doCheck = false;
     }
     ;
@@ -522,7 +522,7 @@ rec {
       };
       format = "wheel";
       buildInputs = [  ];
-      propagatedBuildInputs = [ cliff oslo-serialization oslo-i18n osc-lib prettytable netifaces pyyaml oslo-utils cmd2 pbr rfc3986 simplejson msgpack-python oslo-config netaddr debtcollector monotonic stevedore iso8601 wrapt pytz funcsigs python-keystoneclient babel requests requestsexceptions positional os-client-config keystoneauth1 unicodecsv ];
+      propagatedBuildInputs = [ babel cliff cmd2 debtcollector funcsigs iso8601 keystoneauth1 monotonic msgpack-python netaddr netifaces os-client-config osc-lib oslo-config oslo-i18n oslo-serialization oslo-utils pbr positional prettytable python-keystoneclient pytz pyyaml requests requestsexceptions rfc3986 simplejson stevedore unicodecsv wrapt ];
       doCheck = false;
     }
     ;
@@ -534,7 +534,7 @@ rec {
       };
       format = "wheel";
       buildInputs = [  ];
-      propagatedBuildInputs = [ prettytable oslo-serialization keystoneauth1 simplejson ];
+      propagatedBuildInputs = [ keystoneauth1 oslo-serialization prettytable simplejson ];
       doCheck = false;
     }
     ;
@@ -546,7 +546,7 @@ rec {
       };
       format = "wheel";
       buildInputs = [  ];
-      propagatedBuildInputs = [ python-novaclient python-glanceclient python-keystoneclient python-cinderclient osc-lib openstacksdk ];
+      propagatedBuildInputs = [ openstacksdk osc-lib python-cinderclient python-glanceclient python-keystoneclient python-novaclient ];
       doCheck = false;
     }
     ;
@@ -618,7 +618,7 @@ rec {
       };
       format = "wheel";
       buildInputs = [  ];
-      propagatedBuildInputs = [ futures botocore ];
+      propagatedBuildInputs = [ botocore futures ];
       doCheck = false;
     }
     ;
@@ -630,7 +630,7 @@ rec {
       };
       format = "wheel";
       buildInputs = [  ];
-      propagatedBuildInputs = [ python-neutronclient decorator python-designateclient munch futures python-ironicclient ipaddress jmespath ];
+      propagatedBuildInputs = [ decorator futures ipaddress jmespath munch python-designateclient python-ironicclient python-neutronclient ];
       doCheck = false;
     }
     ;
@@ -714,7 +714,7 @@ rec {
       };
       format = "setuptools";
       buildInputs = [  ];
-      propagatedBuildInputs = [ jsonschema jsonpatch six ];
+      propagatedBuildInputs = [ jsonpatch jsonschema six ];
       doCheck = false;
     }
     ;
