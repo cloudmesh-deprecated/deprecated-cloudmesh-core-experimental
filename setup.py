@@ -21,6 +21,8 @@ def setuptools_requires(path):
         for line in fd:
             l = line.strip()
             if not l: continue
+            if l.startswith('#'): continue
+
             m = pkgname_pypi_re.match(l)
             if m:
                 pkg = m.group('pkg')
