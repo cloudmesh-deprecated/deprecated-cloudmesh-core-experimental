@@ -1,7 +1,12 @@
+# core
 six
 traits
 munch
 pyyaml
 sqlalchemy
+
+# openstack
 shade
+
+# aws
 boto3
