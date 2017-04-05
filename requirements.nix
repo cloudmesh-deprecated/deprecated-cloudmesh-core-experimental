@@ -647,10 +647,10 @@ rec {
     }
     ;
   sqlalchemy = buildPythonPackage {
-      name = "sqlalchemy-1.1.8";
+      name = "sqlalchemy-1.1.9";
       src = fetchurl {
-        url = "https://pypi.python.org/packages/b8/df/cf8fa190708f1b50144f185e1fcd63f25ec51dbe2e6240933ea7565c2e16/SQLAlchemy-1.1.8.tar.gz";
-        sha256 = "e6f2b0c0b89fad86ff589c2d1da88cc8a88f88a2818a8c5e3b9717ac81ce979e";
+        url = "https://pypi.python.org/packages/02/69/9473d60abef55445f8e967cfae215da5de29ca21b865c99d2bf02a45ee01/SQLAlchemy-1.1.9.tar.gz";
+        sha256 = "b65cdc73cd348448ef0164f6c77d45a9f27ca575d3c5d71ccc33adf684bc6ef0";
       };
       format = "setuptools";
       buildInputs = [  ];
