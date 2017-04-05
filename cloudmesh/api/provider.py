@@ -65,6 +65,12 @@ class Result(object):
     def attrs(self):
         return self._attrs
 
+    def __str__(self):
+        return repr(self)
+
+    def __repr__(self):
+        return 'Result(id={}, {})'.format(self.id, self.attrs)
+
     def __eq__(self, other):
         assert type(other) is str
         return other == self.id
