@@ -2,7 +2,7 @@
 six
 traits
 munch
-pyyaml
+ruamel.yaml
 sqlalchemy
 
 # openstack

@@ -15,6 +15,8 @@ build_inputs:
     - libffi
   pyyaml:
     - libyaml
+  ruamel.yaml:
+    - libyaml
 
 setup_requires:
   cryptography:
