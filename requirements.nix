@@ -527,10 +527,10 @@ rec {
     }
     ;
   python-novaclient = buildPythonPackage {
-      name = "python-novaclient-7.1.0";
+      name = "python-novaclient-8.0.0";
       src = fetchurl {
-        url = "https://pypi.python.org/packages/76/6e/61118a2bfdce3843948b9e7fbb9c8b964ad96d2ba18ffb8cb841f82fc9f7/python_novaclient-7.1.0-py2.py3-none-any.whl";
-        sha256 = "ff46aabc20c39a9fad9ca7aa8f15fd5145852d7385a47e111df7bfd7cd106a65";
+        url = "https://pypi.python.org/packages/f2/6e/c000650710f52aa8cc3b5a7904b398aed8b41f220cda0a2f48c481beb9cb/python_novaclient-8.0.0-py2.py3-none-any.whl";
+        sha256 = "a428f5acc19bd41bcb7401bd9fadfcbcdeb8786620958e02f038bd49e05c0e69";
       };
       format = "wheel";
       buildInputs = [  ];
