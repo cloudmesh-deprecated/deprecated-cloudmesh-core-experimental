@@ -12,5 +12,5 @@ test:
 
 ################################################################
 
-requirements.nix: pip2nix requirements.open nixpkgs.nix
-	./pip2nix
+requirements.nix: requirements.open nixpkgs.nix
+	nix-pip
