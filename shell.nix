@@ -13,6 +13,7 @@ let
     hasPrefix
     fileContents
     filter
+    replaceStrings
     splitString
     stringLength
     ;
@@ -31,7 +32,8 @@ let
     let
       cleaner = line: !(hasPrefix "#" line) && (stringLength line > 0);
       lines = splitString "\n" (fileContents file);
-    in filter cleaner lines;
+      fixDots = replaceStrings ["."] ["-"];
+    in map fixDots (filter cleaner lines);
 
   findPackages = set: packageNames:
     let
