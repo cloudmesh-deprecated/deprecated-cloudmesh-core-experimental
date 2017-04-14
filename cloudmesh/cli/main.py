@@ -1,7 +1,7 @@
 import click
 
-from cloudmesh.cli.boot.commands import boot
-from cloudmesh.cli.delete.commands import delete
+from .boot.main import boot
+from .delete.main import delete
 
 import logging
 logger = logging.getLogger(__name__)
