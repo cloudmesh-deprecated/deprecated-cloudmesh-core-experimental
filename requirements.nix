@@ -527,10 +527,10 @@ rec {
     }
     ;
   python-neutronclient = buildPythonPackage {
-      name = "python-neutronclient-6.1.0";
+      name = "python-neutronclient-6.2.0";
       src = fetchurl {
-        url = "https://pypi.python.org/packages/6d/bf/aa1ebe9de4a92648afe29e692c07d410fde6e1fc914f3dfa3773f39208f5/python_neutronclient-6.1.0-py2.py3-none-any.whl";
-        sha256 = "55f9e9b5cba27f6d9bc2b1b4d894764cb94e42054ebf5a1d701b1bf5ac5ecb4a";
+        url = "https://pypi.python.org/packages/76/8b/501fb8b8b06512c68f5c885778f8889b420815c81196488fc8f7ed188b39/python_neutronclient-6.2.0-py2.py3-none-any.whl";
+        sha256 = "dcd55cc659db4c537319630994f6339b74a73eb018bdabf7305943c0a081add2";
       };
       format = "wheel";
       buildInputs = [  ];
