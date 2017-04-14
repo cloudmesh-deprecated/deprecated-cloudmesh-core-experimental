@@ -1,5 +1,5 @@
 
-.PHONY: dev test
+.PHONY: dev test upgrade
 
 
 dev: shell.nix requirements.nix nixpkgs.nix
@@ -9,8 +9,10 @@ dev: shell.nix requirements.nix nixpkgs.nix
 test:
 	py.test
 
+upgrade: requirements.nix
+
 
 ################################################################
 
-requirements.nix: requirements.open nixpkgs.nix
+requirements.nix: requirements.open test_requirements.open nixpkgs.nix
 	nix-pip
