@@ -4,6 +4,7 @@ traits
 munch
 ruamel.yaml
 sqlalchemy
+click
 
 # openstack
 shade

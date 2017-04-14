@@ -58,6 +58,18 @@ rec {
       doCheck = false;
     }
     ;
+  click = buildPythonPackage {
+      name = "click-6.7";
+      src = fetchurl {
+        url = "https://pypi.python.org/packages/95/d9/c3336b6b5711c3ab9d1d3a80f1a3e2afeb9d8c02a7166462f6cc96570897/click-6.7.tar.gz";
+        sha256 = "f15516df478d5a56180fbf80e68f206010e6d160fc39fa508b65e035fd75130b";
+      };
+      format = "setuptools";
+      buildInputs = [  ];
+      propagatedBuildInputs = [  ];
+      doCheck = false;
+    }
+    ;
   cliff = buildPythonPackage {
       name = "cliff-2.5.0";
       src = fetchurl {
