@@ -47,10 +47,10 @@ rec {
     }
     ;
   botocore = buildPythonPackage {
-      name = "botocore-1.5.38";
+      name = "botocore-1.5.39";
       src = fetchurl {
-        url = "https://pypi.python.org/packages/fe/85/e1e51d9a810dd93e28254abb9a3c3ccc5fad23c1d67d664761c512814e50/botocore-1.5.38-py2.py3-none-any.whl";
-        sha256 = "d4e808a5dd8f3d00b246dfe4c80bf9e54af0521fdf02cd3998895afc40e74d63";
+        url = "https://pypi.python.org/packages/9d/f6/2c49bd0cb7725abf3585330d8642fd75931b7b84101e06d672586c378d1e/botocore-1.5.39-py2.py3-none-any.whl";
+        sha256 = "1cbdf14f2e17a51445a740e565536e41870fb9b538017df9f18bf7893f962ced";
       };
       format = "wheel";
       buildInputs = [  ];
