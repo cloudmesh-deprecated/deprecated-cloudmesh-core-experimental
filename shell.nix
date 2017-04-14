@@ -1,5 +1,4 @@
 { pkgs ? import ./nixpkgs.nix
-, venvdir ? ".venv"
 , name ? "cloudmesh.core"
 , install ? "install"
 }:
