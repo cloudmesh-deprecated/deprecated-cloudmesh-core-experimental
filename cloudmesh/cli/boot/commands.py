@@ -6,6 +6,7 @@ from .openstack import openstack
 
 @click.group()
 def boot():
+    "Boot machine(s)"
     pass
 
 boot.add_command(aws)
