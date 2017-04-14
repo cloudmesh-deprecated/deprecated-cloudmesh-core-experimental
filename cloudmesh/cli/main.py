@@ -1,6 +1,7 @@
 import click
 
 from cloudmesh.cli.boot.commands import boot
+from cloudmesh.cli.delete.commands import delete
 
 import logging
 logger = logging.getLogger(__name__)
@@ -17,7 +18,7 @@ def main(ctx, debug):
 
 
 main.add_command(boot)
-
+main.add_command(delete)
 
 
 if __name__ == '__main__':
