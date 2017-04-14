@@ -419,10 +419,10 @@ rec {
     }
     ;
   pbr = buildPythonPackage {
-      name = "pbr-2.0.0";
+      name = "pbr-2.1.0";
       src = fetchurl {
-        url = "https://pypi.python.org/packages/e9/c0/8f7f54d7b9b8ceb73ac30d769fdd722431e95ad0d2cd689def382e8b9eec/pbr-2.0.0-py2.py3-none-any.whl";
-        sha256 = "d9b69a26a5cb4e3898eb3c5cea54d2ab3332382167f04e30db5e1f54e1945e45";
+        url = "https://pypi.python.org/packages/3f/fd/1ac92034e81906ff10d261f4d72141e75710188a25b7b958c5f7a23bbd30/pbr-2.1.0-py2.py3-none-any.whl";
+        sha256 = "be54aa7c958bf0a6b2949d3fb5b049c1e4d212d25a03068583b4942eccec804f";
       };
       format = "wheel";
       buildInputs = [  ];
