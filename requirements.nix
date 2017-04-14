@@ -635,10 +635,10 @@ rec {
     }
     ;
   ruamel-yaml = buildPythonPackage {
-      name = "ruamel.yaml-0.14.5";
+      name = "ruamel.yaml-0.14.6";
       src = fetchurl {
-        url = "https://pypi.python.org/packages/5c/13/c120a06b3add0f9763ca9190e5f6edb9faf9d34b158dd3cff7cc9097be03/ruamel.yaml-0.14.5.tar.gz";
-        sha256 = "a57379a23002460e1645950aba97fd6fbcf2b0818c95c0f340f7e522875ba6b0";
+        url = "https://pypi.python.org/packages/30/4f/e41d65d7d2a3b80aef3c1efb1fd3cb14b9b874f4ad1c3c1f7be6b2f77db2/ruamel.yaml-0.14.6.tar.gz";
+        sha256 = "d055555efa727b9830e31d2a5eb449701c1eeb702c196844bb004f22b19ab24b";
       };
       format = "setuptools";
       buildInputs = [ libyaml ];
