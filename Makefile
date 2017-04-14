@@ -3,7 +3,7 @@
 
 
 dev: shell.nix requirements.nix nixpkgs.nix
-	nix-shell
+	nix-shell --argstr install dev
 
 # assumed that `make dev` is called first
 test:
