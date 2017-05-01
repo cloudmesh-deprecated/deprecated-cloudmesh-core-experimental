@@ -9,7 +9,7 @@ let
 
   pip = callPackage ./nixpip.nix {
     runtime = ./requirements.open;
-    testing = ./test_requirements.open;
+    dev     = ./requirements.dev;
   };
 
   attr = {

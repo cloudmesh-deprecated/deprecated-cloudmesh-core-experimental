@@ -14,5 +14,5 @@ upgrade: requirements.nix
 
 ################################################################
 
-requirements.nix: requirements.open test_requirements.open nixpkgs.nix
+requirements.nix: requirements.open requirements.dev nixpkgs.nix
 	nix-pip

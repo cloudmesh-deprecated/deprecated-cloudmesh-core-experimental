@@ -7,8 +7,8 @@ let
   src = pkgs.fetchFromGitHub {
     owner = "NixOS";
     repo = "nixpkgs-channels";
-    rev = "89a036506396dd869474a32e984f5cab5c07992a"; # 2017/02/17
-    sha256 = "04fxjh5ca41rlnvc4ggbgh41j4mkqj685inxj2xbm9i8giabncw1";
+    rev = "7369fd0b51f4cfb4e47b19d4bdaf6809f099e747"; # 2017/04/24
+    sha256 = "04d59cksi89q8s9wm4gw769yc488caq2bj7ifxmy7b8hjhchqwym";
   };
 
   pinned-pkgs = import src {};

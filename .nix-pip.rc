@@ -1,8 +1,13 @@
 # -*- mode: yaml -*-
 
+nixpkgs: import ./nixpkgs.nix
+python: pkgs.pythonFull
+pythonPackages: pkgs.pythonPackages
+
 requirements:
   inputs:
     - requirements.open
+    - requirements.dev
   output: requirements.nix
   packages:
     - vcversioner==2.16.0.0
@@ -44,3 +49,5 @@ setup_requires:
     - six
   python-dateutil:
     - six
+  tox:
+    - vcversioner

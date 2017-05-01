@@ -42,7 +42,7 @@ setup(
     namespace_packages = ['cloudmesh'],
     packages = find_packages(),
     install_requires = setuptools_requires('requirements.open'),
-    test_requires = setuptools_requires('test_requirements.open'),
+    test_requires = setuptools_requires('requirements.dev'),
     entry_points = {
         'console_scripts': [
             'cm=cloudmesh.cli.main:main',
