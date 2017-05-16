@@ -1,4 +1,6 @@
 
+from cloudmesh.aws.provider import Provider
+
 import click
 
 import boto3
@@ -23,20 +25,36 @@ def default_get(collection, query, mk):
 
 
 @click.command()
+@click.option('-n', '--name', default='cloudmesh')
 @click.option('-i', '--image', default='ami-f4cc1de2')
 @click.option('-t', '--instance-type', default='t2.small')
-@click.option('-v', '--vpc', help='The PVC to launch in')
-@click.option('-s', '--subnet', help='The Subnet of the VPC to use')
-def aws(image, instance_type, vpc, subnet):
+@click.option('-k', '--sshkey', help='The SSH key to allow login')
+@click.option('-x', '--secgroups', help='Comma-separated list of security group names to apply (eg foo,bar,baz)')
+@click.option('-P', '--public-ip', is_flag=True, help='Associate a public IP')
+def aws(name, image, instance_type, sshkey, secgroups, public_ip):
     """Boot on AWS"""
-    logger.info('AWS %s %s', image, instance_type)
 
-    ec2 = boto3.resource('ec2')
+    if secgroups:
+        secgroups = secgroups.split(',')
+    else:
+        secgroups = []
 
-    vpc = default_get(ec2.vpcs, vpc, ec2.Vpc)
-    print vpc.tags
-    subnet = default_get(vpc.subnets, subnet, ec2.Subnet)
-    print subnet.tags
+    p = Provider()
+    r = p.allocate_node(
+        name=name,
+        key=sshkey,
+        image=image,
+        flavor=instance_type,
+        security_groups=secgroups)
+
+    
+
+    # ec2 = boto3.resource('ec2')
+
+    # vpc = default_get(ec2.vpcs, vpc, ec2.Vpc)
+    # print vpc.tags
+    # subnet = default_get(vpc.subnets, subnet, ec2.Subnet)
+    # print subnet.tags
 
 
     # # pick subnet

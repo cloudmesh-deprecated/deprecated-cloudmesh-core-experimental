@@ -2,7 +2,7 @@
 .PHONY: dev test upgrade
 
 
-dev: shell.nix requirements.nix nixpkgs.nix
+dev: shell.nix nixpkgs.nix
 	nix-shell --argstr install dev
 
 # assumed that `make dev` is called first
